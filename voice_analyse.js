@@ -4,7 +4,7 @@ navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia 
 // 変数定義
 var localMediaStream = null;
 var localScriptProcessor = null;
-var audioContext = new AudioContext();
+var audioContext = null;
 var bufferSize = 1024;
 var audioData = []; // 録音データ
 var recordingFlg = false;
@@ -80,6 +80,7 @@ var analyseVoice = function() {
 
 // 解析開始
 var startRecording = function() {
+    audioContext = new AudioContext();
     recordingFlg = true;
     navigator.getUserMedia({audio: true}, function(stream) {
         // 録音関連
